@@ -1,0 +1,118 @@
+<html>
+<head>
+    <title>Days until my Birthday</title>
+    <style>
+    * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    }
+
+    body {
+    background-color: #393232;
+    }
+
+    .container {
+    color: #ed8d8d;
+    text-align: center;
+    }
+
+    a{
+    color: #ed8d8d;
+    }
+
+    h1 {
+    font-weight: normal;
+    }
+
+    li {
+    display: inline-block;
+    font-size: 1.5em;
+    list-style-type: none;
+    padding: 1em;
+    text-transform: uppercase;
+    }
+
+    li span {
+    display: block;
+    font-size: 4.5rem;
+    }
+    </style>
+</head>
+
+<body>
+<div class="container">
+    <h1 id="head">Countdown to my NEW birthday:</h1>
+    <ul>
+      <li><span id="days"></span>days</li>
+      <li><span id="hours"></span>Hours</li>
+      <li><span id="minutes"></span>Minutes</li>
+      <li><span id="seconds"></span>Seconds</li>
+    </ul>
+</div>
+
+<div class="container">
+    <h1 id="head">Days cancer free:</h1>
+    <ul>
+        <li><span id="daysfree"></span>days</li>
+    </ul>
+    <ul>
+        <li><a href="https://twitter.com/robledoKari">Say hi</a></li>
+    </ul>
+</div>
+
+<script type = "text/javascript" > 
+    // One day Time in ms (milliseconds) 
+    var one_day = 1000 * 60 * 60 * 24 
+    
+    // To set present_dates to two variables 
+    var present_date = new Date(); 
+    var present_date2 = new Date()
+    
+    // 0-11 is Month in JavaScript 
+    var christmas_day = new Date(present_date.getFullYear(), 11, 25) 
+    var sct_day = new Date(2018, 10, 20) 
+    
+    // To Calculate next year's Christmas if passed already. 
+    if (present_date.getMonth() == 11 && present_date.getdate() > 25) 
+        christmas_day.setFullYear(christmas_day.getFullYear() + 1) 
+    
+    // To Calculate the result in milliseconds and then converting into days 
+    var Result = Math.round(christmas_day.getTime() - present_date.getTime()) / (one_day); 
+    var Result2 = Math.round(present_date2.getTime() - sct_day.getTime()) / (one_day); 
+    
+    // To remove the decimals from the (Result) resulting days value 
+    var Final_Result = Result.toFixed(0); 
+    var Final_Result2 = Result2.toFixed(0); 
+    document.getElementById('daysfree').innerText = Final_Result2;
+    
+    //To display the final_result value 
+    const second = 1000,
+    minute = second * 60,
+    hour = minute * 60,
+    day = hour * 24;
+
+    let countDown = new Date(present_date.getFullYear(), 10, 20) 
+    if (present_date.getMonth() == 10 && present_date.getdate() > 20) 
+    countDown.setFullYear(countDown.getFullYear() + 1) 
+
+    x = setInterval(function() {
+
+    let now = new Date().getTime(),
+        distance = countDown - now;
+
+    document.getElementById('days').innerText = Math.floor(distance / (day)),
+    document.getElementById('hours').innerText = Math.floor((distance % (day)) / (hour)),
+    document.getElementById('minutes').innerText = Math.floor((distance % (hour)) / (minute)),
+    document.getElementById('seconds').innerText = Math.floor((distance % (minute)) / second);
+    
+    //do something later when date is reached
+    if (distance < 0) {
+        clearInterval(x);
+    //  'IT'S MY BIRTHDAY!;
+    }
+
+    }, second)
+</script> 
+</body>
+</html>
